@@ -33,13 +33,26 @@ public:
 		return -1;
 	}
 	size_t size() const {
-		return size_t;
+		int count = 0;
+		for (std::list<T>::iterator it = container.begin(); it != container.end(); ++it) {
+			
+		}
+		return count;
 	}
-	size_t capacity() const;
+
+	size_t capacity() const {
+	
+	}
 	bool add(const T& t) {
 		container.push_back(t);
 	}
+
 	T remove(const T& t) {
-	
+		int count = 0;
+		for (std::list<T>::iterator it = container.begin(); it != container.end(); ++it)
+			if (it == t) {
+				container.erase(it);
+				return it;
+			}
 	}
 };
