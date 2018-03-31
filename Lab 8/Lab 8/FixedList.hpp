@@ -1,6 +1,7 @@
 #pragma once
 #include <array>
 #include <iterator>
+#include <iostream>
 template<class T, size_t N>
 class FixedList
 {
@@ -17,6 +18,14 @@ public:
 	FixedList<T, N>::~FixedList()
 	{
 	}
+
+
+
+	/*
+	Returns the value at the index.
+	PRECONDTION: The list has to be initiated.
+	POSTCONDITION: Returns the value at the index.
+	*/
 	const T& get(unsigned int index) const {
 		int count = 0;
 		for (auto it = container.begin(); it != container.end(); ++it) {
@@ -84,6 +93,7 @@ public:
 		}
 		else {
 			container[size] = t;
+			std::cout << t << endl;
 			size++;
 			return true;
 		}	
