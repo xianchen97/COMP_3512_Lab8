@@ -1,5 +1,6 @@
 #pragma once
 #include <array>
+#include <iterator>
 template<class T, size_t N>
 class FixedList
 {
@@ -17,12 +18,7 @@ public:
 	{
 	}
 	const T& get(unsigned int index) const {
-		int count = 0;
-		for (std::array<T>::iterator it = container.begin(); it != container.end(); ++it)
-			if (count == index) {
-				return it;
-			}
-		count++;
+		return container[index];
 	}
 	/* Overloading the subscript operator
 	PRECONDITION: A list has to be initiated.
@@ -30,7 +26,7 @@ public:
 	*/
 	T& operator[](unsigned int index) {
 		int count = 0;
-		for (std::array<T>::iterator it = container.begin(); it != container.end(); ++it)
+		for (auto it = begin(container); it != end(container); ++it)
 			if (count == index) {
 				return it;
 			}
@@ -45,10 +41,8 @@ public:
 	**/
 	int getFirstIndex(const T& t) const {
 		int count = 0;
-		for (std::array<T>::iterator it = container.begin(); it != container.end(); ++it)
-			if ((auto)it == (auto)t) {
-				return count;
-			}
+		for (std::array<T>::iterator it = container.begin(); it != container.end(); ++it) {
+		}
 		return -1;
 	}
 
@@ -77,14 +71,16 @@ public:
 	List cannot be full.
 	POSTCONDITION: Element has been pushed to the back of the list.
 	*/
-	bool add(const T& t) {
-		if (size != capacity) {
+	 bool add(const T & t)
+	{
+		if (size == capacity) {
+			return false;
+		}
+		else {
 			container[size] = t;
 			size++;
 			return true;
-		}
-		return false;
-		
+		}	
 	}
 
 	/*

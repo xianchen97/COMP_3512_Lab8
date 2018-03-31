@@ -29,7 +29,7 @@ namespace UnitTest1
 
 		TEST_METHOD(TestMethod3)
 		{
-			Assert::AreEqual(4, v.getFirstIndex(2));
+			Assert::AreEqual(1, v.get(2));
 		}
 	};
 }
