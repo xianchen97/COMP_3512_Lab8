@@ -15,7 +15,21 @@ namespace UnitTest1
 		TEST_METHOD(TestMethod1)
 		{
 			v.add(1);
+			v.add(1);
+			Assert::AreEqual((size_t)2, v.sizeCalc());
 		}
 
+		TEST_METHOD(TestMethod2)
+		{
+			v.add(1);
+			v.add(1);
+			v.add(2);
+			Assert::AreEqual((size_t)5, v.capacityCalc());
+		}
+
+		TEST_METHOD(TestMethod3)
+		{
+			Assert::AreEqual(4, v.getFirstIndex(2));
+		}
 	};
 }

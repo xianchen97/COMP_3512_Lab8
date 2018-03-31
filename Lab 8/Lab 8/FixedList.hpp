@@ -46,7 +46,7 @@ public:
 	int getFirstIndex(const T& t) const {
 		int count = 0;
 		for (std::array<T>::iterator it = container.begin(); it != container.end(); ++it)
-			if (it == t) {
+			if ((auto)it == (auto)t) {
 				return count;
 			}
 		return -1;
@@ -78,8 +78,13 @@ public:
 	POSTCONDITION: Element has been pushed to the back of the list.
 	*/
 	bool add(const T& t) {
-		container.push_back(t);
-		size++;
+		if (size != capacity) {
+			container[size] = t;
+			size++;
+			return true;
+		}
+		return false;
+		
 	}
 
 	/*
@@ -90,7 +95,7 @@ public:
 	*/
 	T remove(const T& t) {
 		for (std::array<T>::iterator it = container.begin(); it != container.end(); ++it) {
-			if (it == t) {
+			if ((T)it == t) {
 				container.erase(it);
 				size--;
 				return it;
