@@ -18,19 +18,20 @@ public:
 	{
 	}
 	const T& get(unsigned int index) const {
-		return container[index];
+		int count = 0;
+		for (auto it = container.begin(); it != container.end(); ++it) {
+			if (count == index) {
+				return *it;
+			}
+			count++;
+		}
 	}
 	/* Overloading the subscript operator
 	PRECONDITION: A list has to be initiated.
 	Value must exist in the list.
 	*/
 	T& operator[](unsigned int index) {
-		int count = 0;
-		for (auto it = begin(container); it != end(container); ++it)
-			if (count == index) {
-				return it;
-			}
-		count++;
+		return container[int];
 	}
 
 	/**
@@ -41,9 +42,14 @@ public:
 	**/
 	int getFirstIndex(const T& t) const {
 		int count = 0;
-		for (std::array<T>::iterator it = container.begin(); it != container.end(); ++it) {
+		for (auto it = container.begin(); it != container.end(); ++it) {
+			if (count == index) {
+				*it == t;
+				return count;
+			}
+			count++;
 		}
-		return -1;
+		return count;
 	}
 
 	/**
