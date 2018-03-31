@@ -3,7 +3,8 @@
 template<class T, size_t N>
 class FixedList
 {
-	size_t size{ N };
+	size_t size = 0;
+	size_t capacity{ N };
 	std::array<T, N> container;
 
 public:
@@ -57,12 +58,8 @@ public:
 	List is at least of size 1.
 	POSTCONDITION: Returns the current number of elements in the list.
 	**/
-	size_t size() const {
-		size_t count = 0;
-		for (std::array<T>::iterator it = container.begin(); it != container.end(); ++it) {
-			count++;
-		}
-		return count;
+	size_t sizeCalc() const {
+		return size;
 	}
 
 	/**
@@ -70,8 +67,8 @@ public:
 	PRECONDITON: The list has been created.
 	POSTCONDITION: Returns the number of elements in the list.
 	**/
-	size_t capacity() const {
-		return size;
+	size_t capacityCalc() const {
+		return capacity;
 	}
 
 	/*
@@ -82,6 +79,7 @@ public:
 	*/
 	bool add(const T& t) {
 		container.push_back(t);
+		size++;
 	}
 
 	/*
@@ -91,12 +89,14 @@ public:
 	POSTCONDITION: Returns the value that was removed;
 	*/
 	T remove(const T& t) {
-		int count = 0;
-		for (std::array<T>::iterator it = container.begin(); it != container.end(); ++it)
+		for (std::array<T>::iterator it = container.begin(); it != container.end(); ++it) {
 			if (it == t) {
 				container.erase(it);
+				size--;
 				return it;
 			}
+		}
+
 	}
 };
 

@@ -14,7 +14,7 @@ namespace UnitTest1
 		
 		TEST_METHOD(TestMethod1)
 		{
-
+			v.add(1);
 		}
 
 	};
