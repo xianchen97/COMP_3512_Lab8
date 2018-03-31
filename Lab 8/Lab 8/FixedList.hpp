@@ -17,7 +17,7 @@ public:
 	}
 	const T& get(unsigned int index) const {
 		int count = 0;
-		for (std::list<T>::iterator it = container.begin(); it != container.end(); ++it)
+		for (std::array<T>::iterator it = container.begin(); it != container.end(); ++it)
 			if (count == index) {
 				return it;
 			}
@@ -29,7 +29,7 @@ public:
 	*/
 	T& operator[](unsigned int index) {
 		int count = 0;
-		for (std::list<T>::iterator it = container.begin(); it != container.end(); ++it)
+		for (std::array<T>::iterator it = container.begin(); it != container.end(); ++it)
 			if (count == index) {
 				return it;
 			}
@@ -44,7 +44,7 @@ public:
 	**/
 	int getFirstIndex(const T& t) const {
 		int count = 0;
-		for (std::list<T>::iterator it = container.begin(); it != container.end(); ++it)
+		for (std::array<T>::iterator it = container.begin(); it != container.end(); ++it)
 			if (it == t) {
 				return count;
 			}
@@ -58,8 +58,8 @@ public:
 	POSTCONDITION: Returns the current number of elements in the list.
 	**/
 	size_t size() const {
-		int count = 0;
-		for (std::list<T>::iterator it = container.begin(); it != container.end(); ++it) {
+		size_t count = 0;
+		for (std::array<T>::iterator it = container.begin(); it != container.end(); ++it) {
 			count++;
 		}
 		return count;
@@ -92,7 +92,7 @@ public:
 	*/
 	T remove(const T& t) {
 		int count = 0;
-		for (std::list<T>::iterator it = container.begin(); it != container.end(); ++it)
+		for (std::array<T>::iterator it = container.begin(); it != container.end(); ++it)
 			if (it == t) {
 				container.erase(it);
 				return it;
