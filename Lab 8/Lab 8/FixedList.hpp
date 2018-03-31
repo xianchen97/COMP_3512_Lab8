@@ -1,14 +1,20 @@
 #pragma once
+#include <array>
 template<class T, size_t N>
 class FixedList
 {
-	size_t size;
-	std::list<N> container;
+	size_t size{ N };
+	std::array<T, N> container;
 
 public:
 	/* Constructor to be set using template parameter */
-	FixedVector() : container(std::list<T>(size_t, T(0))) {};
-	~FixedVector() {};
+	FixedList<T, N>::FixedList()
+	{
+	}
+
+	FixedList<T, N>::~FixedList()
+	{
+	}
 	const T& get(unsigned int index) const {
 		int count = 0;
 		for (std::list<T>::iterator it = container.begin(); it != container.end(); ++it)
@@ -19,7 +25,7 @@ public:
 	}
 	/* Overloading the subscript operator
 	PRECONDITION: A list has to be initiated.
-				  Value must exist in the list.
+	Value must exist in the list.
 	*/
 	T& operator[](unsigned int index) {
 		int count = 0;
@@ -29,11 +35,11 @@ public:
 			}
 		count++;
 	}
-	
+
 	/**
 	Return the first index of the first occurence of an element in the list.
 	PRECONDITION: List must be initiated.
-	              The value must exist in the list.
+	The value must exist in the list.
 	POSTCONDITION: Returns the index of the first occurrence of an element in the list.
 	**/
 	int getFirstIndex(const T& t) const {
@@ -45,10 +51,10 @@ public:
 		return -1;
 	}
 
-	/** 
+	/**
 	Return the current number of elements in the list.
 	PRECONDITION: The list is created.
-	              List is at least of size 1.
+	List is at least of size 1.
 	POSTCONDITION: Returns the current number of elements in the list.
 	**/
 	size_t size() const {
@@ -59,7 +65,7 @@ public:
 		return count;
 	}
 
-	/** 
+	/**
 	Return the max size of the list.
 	PRECONDITON: The list has been created.
 	POSTCONDITION: Returns the number of elements in the list.
@@ -71,7 +77,7 @@ public:
 	/*
 	Adds an element to the back of the list.
 	PRECONDITION: List has been created.
-	              List cannot be full.
+	List cannot be full.
 	POSTCONDITION: Element has been pushed to the back of the list.
 	*/
 	bool add(const T& t) {
@@ -81,7 +87,7 @@ public:
 	/*
 	Removes the first occurence of an element in the list and returns the value.
 	PRECONDITION: The list has been created.
-	              Value exists in the list.
+	Value exists in the list.
 	POSTCONDITION: Returns the value that was removed;
 	*/
 	T remove(const T& t) {
@@ -93,3 +99,4 @@ public:
 			}
 	}
 };
+
